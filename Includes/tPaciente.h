@@ -4,4 +4,8 @@
 #include "tPessoa.h"
 #include "tLesao.h"
 
+typedef struct tPaciente tPaciente;
+
+tPaciente* criaPaciente(tPessoa* infos);
+
 #endif
