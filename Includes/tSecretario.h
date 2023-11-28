@@ -1,7 +1,7 @@
 #ifndef TSECRATARIO_H
 #define TSECRETARIO_H
 
-#include "tAtor.h"
+#include "tPessoa.h"
 
 typedef struct tSecretario tSecretario;
 

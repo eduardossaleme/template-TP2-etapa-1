@@ -1,6 +1,7 @@
 #ifndef TPACIENTE_H
 #define TPACIENTE_H
 
-#include "tAtor.h"
+#include "tPessoa.h"
+#include "tLesao.h"
 
 #endif
