@@ -14,8 +14,6 @@ tSecretario* criaSecretario(tPessoa* infos, char* usuario, char* senha, ACESSO a
     strcpy(secretario->usuario, usuario);
     strcpy(secretario->senha, senha);
 
-    // printf("user %s\n", secretario->usuario);
-    // printf("senha %s\n", secretario->senha);
     return secretario;
 }
 
@@ -34,6 +32,10 @@ char* obtemUsuarioSecretario(tSecretario* s){
 
 char* obtemSenhaSecretario(tSecretario* s){
     return s->senha;
+}
+
+ACESSO obtemAcessoSecretario(tSecretario* s){
+    return s->acesso;
 }
 
 void adicionaSecretarioBandoDeDados(tSecretario* s, FILE* pFile){

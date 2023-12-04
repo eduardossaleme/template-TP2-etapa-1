@@ -8,6 +8,7 @@ struct tSade{
     tPessoa* user;
     ACESSO nivelAcesso;
     int nMedicos, nPacientes, nSecretarios, nConsultas;
+    char crm[MAX_TAM_CRM];
     char path[1000];
 };
 
@@ -24,14 +25,17 @@ tSade* inicializaSade(){
     sprintf(arquivo, "%s/secretarios.bin", sade->path);
     if(!(pFile = fopen(arquivo, "rb"))){
         cadastraSecretario(sade);
+        sade->user=obtemInfoSecretario(sade->secretarios[0]);
+        sade->nivelAcesso=obtemAcessoSecretario(sade->secretarios[0]);
     }
     else{
         fclose(pFile);
         leBancoDeDadosSecretarios(sade);
         leBancoDeDadosPacientes(sade);
         leBancoDeDadosMedicos(sade);
+        realizaLogin(sade);
     }
-
+    criaBancoDeDadosSecretarios(sade);
     return sade;
 }
 
@@ -113,13 +117,20 @@ void cadastraSecretario(tSade* sade){
 
 void criaBancoDeDadosSecretarios(tSade* sade){
     char nome[1020];
+    int i;
     sprintf(nome, "%s/secretarios.bin", sade->path);
-    FILE* pFile = fopen(nome, "wb");
-    fwrite(&sade->nSecretarios, sizeof(int), 1, pFile);
-    for(int i=0;i<sade->nSecretarios;i++){
-        adicionaSecretarioBandoDeDados(sade->secretarios[i], pFile);
+    FILE *arquivo;
+    arquivo = fopen(nome, "wb");
+    if(arquivo==NULL){
+        printf("%s\n", sade->path);
+        printf("ERRO\n");
+        return;
     }
-    fclose(pFile);
+    fwrite(&sade->nSecretarios, sizeof(int), 1, arquivo);
+    for(i=0;i<sade->nSecretarios;i++){
+        adicionaSecretarioBandoDeDados(sade->secretarios[i], arquivo);
+    }
+    fclose(arquivo);
 }
 
 void leBancoDeDadosPacientes(tSade* sade){
@@ -272,4 +283,65 @@ void criaBancoDeDadosMedicos(tSade* sade){
         adicionaMedicoBandoDeDados(sade->medicos[i], pFile);
     }
     fclose(pFile);
+}
+
+void realizaLogin(tSade* sade){
+    char user[MAX_TAM_LOGIN];
+    char senha[MAX_TAM_LOGIN];
+    int i, aux2, aux1=1;
+    while(1){
+        printf("######################## ACESSO MINI-SADE ######################\n");
+        printf("DIGITE SEU LOGIN:\nDIGITE SUA SENHA:\n");
+        printf("###############################################################\n");
+        scanf("%s%*c", user);
+        scanf("%s%*c", senha);
+        aux2=1;
+        for(i=0; i<sade->nSecretarios;i++){
+            if(!(strcmp(user, obtemUsuarioSecretario(sade->secretarios[i])))){
+                if(!(strcmp(senha, obtemSenhaSecretario(sade->secretarios[i])))){
+                    aux1=0;
+                    sade->nivelAcesso=obtemAcessoSecretario(sade->secretarios[i]);
+                    sade->user=obtemInfoSecretario(sade->secretarios[i]);
+                    break;
+                }
+                else{
+                    aux2=0;
+                }
+            }
+        }
+        for(i=0;i<sade->nMedicos;i++){
+            if(!(strcmp(user, obtemUsuarioMedico(sade->medicos[i])))){
+                if(!(strcmp(senha, obtemSenhaMedico(sade->medicos[i])))){
+                    aux1=0;
+                    sade->nivelAcesso=MEDICO;
+                    sade->user=obtemInfoMedico(sade->medicos[i]);
+                    strcpy(sade->crm,obtemCrmMedico(sade->medicos[i]));
+                    break;
+                }
+                else{
+                    aux2=0;
+                }
+            }
+        }
+        if(aux1==0) break;
+        if(aux2==0) printf("SENHA INCORRETA\n");
+        else printf("USUARIO INEXISTENTE\n"); 
+    }  
+}
+
+void desalocaSade(tSade* sade){
+    int i;
+    for(i=0;i<sade->nMedicos;i++){
+        desalocaMedico(sade->medicos[i]);
+    }
+    free(sade->medicos);
+    for(i=0;i<sade->nPacientes;i++){
+        desalocaPaciente(sade->pacientes[i]);
+    }
+    free(sade->pacientes);
+    for(i=0;i<sade->nSecretarios;i++){
+        desalocaSecretario(sade->secretarios[i]);
+    }
+    free(sade->secretarios);
+    free(sade);
 }

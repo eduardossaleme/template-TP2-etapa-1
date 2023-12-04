@@ -28,4 +28,8 @@ void cadastraMedico(tSade* sade);
 
 void criaBancoDeDadosMedicos(tSade* sade);
 
+void realizaLogin(tSade* sade);
+
+void desalocaSade(tSade* sade);
+
 #endif

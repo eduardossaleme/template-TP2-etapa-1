@@ -16,6 +16,8 @@ char* obtemUsuarioSecretario(tSecretario* s);
 
 char* obtemSenhaSecretario(tSecretario* s);
 
+ACESSO obtemAcessoSecretario(tSecretario* s);
+
 void adicionaSecretarioBandoDeDados(tSecretario* s, FILE* pFile);
 
 #endif
