@@ -2,14 +2,14 @@
 
 struct tPaciente{
     tPessoa* info;
-    int nLesoes, idade, diabetes, fumante, cancer, alergia;
-    char tipoPele[3];
+    int nConsultas, idade;
+    int *idConsulta;
 };
 
 tPaciente* criaPaciente(tPessoa* infos){
     tPaciente* paciente = (tPaciente*)malloc(sizeof(tPaciente));
     paciente->info = infos;
-    paciente->nLesoes = 0;
+    paciente->nConsultas = 0;
     return paciente;
 }
 
@@ -20,10 +20,6 @@ void desalocaPaciente(tPaciente* paciente){
 
 tPessoa* obtemInfoPaciente(tPaciente* p){
     return p->info;
-}
-
-char* obtemTipoPelePaciente(tPaciente* p){
-    return p->tipoPele;
 }
 
 int obtemIdadePaciente(tPaciente* p){

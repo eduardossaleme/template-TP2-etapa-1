@@ -77,15 +77,6 @@ void leBancoDeDadosSecretarios(tSade* sade){
 }
 
 void cadastraSecretario(tSade* sade){
-    printf("#################### CADASTRO SECRETARIO #######################\n");
-    printf("NOME COMPLETO: <inserir dado via teclado>\n");
-    printf("CPF: <inserir dado via teclado>\n");
-    printf("DATA DE NASCIMENTO: <inserir dado via teclado>\n");
-    printf("TELEFONE: <inserir dado via teclado>\n");
-    printf("GENERO: <inserir dado via teclado>\n");
-    printf("NOME DE USUARIO: <inserir dado via teclado>\n");
-    printf("SENHA: <inserir dado via teclado>\n");
-    printf("NIVEL DE ACESSO: <inserir dado via teclado>\n");
     char nome[MAX_TAM_NOME];
     char cpf[MAX_TAM_CPF];
     char data[MAX_TAM_DATA];
@@ -94,14 +85,24 @@ void cadastraSecretario(tSade* sade){
     char user[MAX_TAM_LOGIN];
     char senha[MAX_TAM_LOGIN];
     char nivel[10];
+    printf("#################### CADASTRO SECRETARIO #######################\n");
+    printf("NOME COMPLETO: ");
     scanf("%s%*c", nome);
+    printf("CPF: ");
     scanf("%s%*c", cpf);
+    printf("DATA DE NASCIMENTO: ");
     scanf("%s%*c", data);
+    printf("TELEFONE: ");
     scanf("%s%*c", telefone);
+    printf("GENERO: ");
     scanf("%s%*c", genero);
+    printf("NOME DE USUARIO: ");
     scanf("%s%*c", user);
+    printf("SENHA: ");
     scanf("%s%*c", senha);
+    printf("NIVEL DE ACESSO: ");
     scanf("%s%*c", nivel);
+    
     ACESSO acesso;
     if((strcmp("ADMIN", nivel))){
         acesso=USER;
@@ -165,23 +166,22 @@ void leBancoDeDadosPacientes(tSade* sade){
 }
 
 void cadastraPaciente(tSade* sade){
-    printf("#################### CADASTRO PACIENTE #######################\n");
-    printf("NOME COMPLETO: <inserir dado via teclado>\n");
-    printf("CPF: <inserir dado via teclado>\n");
-    printf("DATA DE NASCIMENTO: <inserir dado via teclado>\n");
-    printf("TELEFONE: <inserir dado via teclado>\n");
-    printf("GENERO: <inserir dado via teclado>\n");
     char nome[MAX_TAM_NOME];
     char cpf[MAX_TAM_CPF];
     char data[MAX_TAM_DATA];
     char telefone[MAX_TAM_TELEFONE];
     char genero[MAX_TAM_GENERO];
+    printf("#################### CADASTRO PACIENTE #######################\n");
+    printf("NOME COMPLETO: ");
     scanf("%s%*c", nome);
+    printf("CPF: ");
     scanf("%s%*c", cpf);
+    printf("DATA DE NASCIMENTO: ");
     scanf("%s%*c", data);
+    printf("TELEFONE: ");
     scanf("%s%*c", telefone);
+    printf("GENERO: ");
     scanf("%s%*c", genero);
-    ACESSO acesso;
 
     sade->pacientes = (tPaciente**)realloc(sade->pacientes,(1+sade->nPacientes)*sizeof(tPaciente*));
     tPessoa* info = criaPessoa(nome, cpf, data, telefone, genero);
@@ -240,15 +240,6 @@ void leBancoDeDadosMedicos(tSade* sade){
 }
 
 void cadastraMedico(tSade* sade){
-    printf("#################### CADASTRO MEDICO #######################\n");
-    printf("NOME COMPLETO: <inserir dado via teclado>\n");
-    printf("CPF: <inserir dado via teclado>\n");
-    printf("DATA DE NASCIMENTO: <inserir dado via teclado>\n");
-    printf("TELEFONE: <inserir dado via teclado>\n");
-    printf("GENERO: <inserir dado via teclado>\n");
-    printf("CRM: <inserir dado via teclado>\n");
-    printf("NOME DE USUARIO: <inserir dado via teclado>\n");
-    printf("SENHA: <inserir dado via teclado>\n");
     char nome[MAX_TAM_NOME];
     char cpf[MAX_TAM_CPF];
     char data[MAX_TAM_DATA];
@@ -257,15 +248,24 @@ void cadastraMedico(tSade* sade){
     char user[MAX_TAM_LOGIN];
     char senha[MAX_TAM_LOGIN];
     char crm[MAX_TAM_CRM];
+    printf("#################### CADASTRO MEDICO #######################\n");
+    printf("NOME COMPLETO: ");
     scanf("%s%*c", nome);
+    printf("CPF: ");
     scanf("%s%*c", cpf);
+    printf("DATA DE NASCIMENTO: ");
     scanf("%s%*c", data);
+    printf("TELEFONE: ");
     scanf("%s%*c", telefone);
+    printf("GENERO: ");
     scanf("%s%*c", genero);
+    printf("CRM: ");
     scanf("%s%*c", crm);
+    printf("NOME DE USUARIO: ");
     scanf("%s%*c", user);
+    printf("SENHA: ");
     scanf("%s%*c", senha);
-    ACESSO acesso;
+    
     sade->medicos = (tMedico**)realloc(sade->medicos,(1+sade->nMedicos)*sizeof(tMedico*));
     tPessoa* info = criaPessoa(nome, cpf, data, telefone, genero);
     sade->medicos[sade->nMedicos]=criaMedico(info, user, senha, crm);
@@ -292,10 +292,11 @@ void realizaLogin(tSade* sade){
     int i, aux2, aux1=1;
     while(1){
         printf("######################## ACESSO MINI-SADE ######################\n");
-        printf("DIGITE SEU LOGIN:\nDIGITE SUA SENHA:\n");
-        printf("###############################################################\n");
+        printf("DIGITE SEU LOGIN: ");
         scanf("%s%*c", user);
+        printf("DIGITE SUA SENHA: ");
         scanf("%s%*c", senha);
+        printf("###############################################################\n");
         aux2=1;
         for(i=0; i<sade->nSecretarios;i++){
             if(!(strcmp(user, obtemUsuarioSecretario(sade->secretarios[i])))){
@@ -376,13 +377,13 @@ void menuSade(tSade* sade){
 
         }
         else if (opcao=='5'){
-
+            buscaPaciente(sade);
         }
         else if (opcao=='6'){
 
         }
         else if (opcao=='7'){
-
+            filaDeImpressao(sade);
         }
         else if (opcao=='8'){
             break;
@@ -416,4 +417,53 @@ void filaDeImpressao(tSade* sade){
             break;
         }
     }
+}
+
+void buscaPaciente(tSade* sade){
+    int aux=0;
+    char c;
+    char nome[MAX_TAM_NOME];
+    printf("#################### BUSCAR PACIENTES #######################\n");
+    printf("NOME DO PACIENTE: ");
+    scanf("%s%*c", nome);
+    printf("############################################################\n");
+    tListaBusca* lista = criaListaBusca();
+    for(int i=0;i<sade->nPacientes;i++){
+        if(!(strcmp(nome, obtemNomePessoa(obtemInfoPaciente(sade->pacientes[i]))))){
+            adicionaListaBusca(lista, obtemInfoPaciente(sade->pacientes[i]));
+            aux=1;
+        }
+    }
+    if(aux==0){
+        printf("#################### BUSCAR PACIENTES #######################\n");
+        printf("NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+        printf("############################################################\n");
+        desalocaListaBusca(lista);
+    }
+    else{
+        printf("#################### BUSCAR PACIENTES #######################\n");
+        printf("PACIENTES ENCONTRADOS:\n");
+        imprimeTelaListaBusca(lista);
+        while (1)
+        {
+            printf("SELECIONE UMA OPCAO:\n");
+            printf("(1) ENVIAR LISTA PARA IMPRESSAO\n");
+            printf("(2) RETORNAR AO MENU PRINCIPAL\n");
+            printf("############################################################\n");
+            scanf("%c%*c", &c);
+            if(c=='1'){
+                insereDocumentoFila(sade->fila, lista, imprimeTelaListaBusca, imprimeArquivoListaBusca, desalocaListaBusca);
+                printf("#################### BUSCAR PACIENTES #######################\n");
+                printf("LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
+                printf("############################################################\n");
+                scanf("%*c%*c");
+                break;
+            }
+            if(c=='2'){
+                desalocaListaBusca(lista);
+                break;
+            }
+        }  
+    }
+
 }

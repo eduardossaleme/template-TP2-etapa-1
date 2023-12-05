@@ -6,6 +6,7 @@
 #include "tPaciente.h"
 #include "tConsulta.h"
 #include "tFila.h"
+#include "tListaBusca.h"
 
 typedef struct tSade tSade;
 
@@ -38,5 +39,7 @@ void menuSade(tSade* sade);
 void criaBancoDeDados(tSade* sade);
 
 void filaDeImpressao(tSade* sade);
+
+void buscaPaciente(tSade* sade);
 
 #endif
