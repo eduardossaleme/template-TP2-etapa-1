@@ -32,4 +32,8 @@ void realizaLogin(tSade* sade);
 
 void desalocaSade(tSade* sade);
 
+void menuSade(tSade* sade);
+
+void criaBancoDeDados(tSade* sade);
+
 #endif

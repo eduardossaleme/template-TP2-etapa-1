@@ -4,6 +4,10 @@ int main(){
 
     tSade* sade = inicializaSade();
 
+    menuSade(sade);
+
+    criaBancoDeDados(sade);
+
     desalocaSade(sade);
     
     return 0;

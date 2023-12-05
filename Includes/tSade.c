@@ -25,17 +25,14 @@ tSade* inicializaSade(){
     sprintf(arquivo, "%s/secretarios.bin", sade->path);
     if(!(pFile = fopen(arquivo, "rb"))){
         cadastraSecretario(sade);
-        sade->user=obtemInfoSecretario(sade->secretarios[0]);
-        sade->nivelAcesso=obtemAcessoSecretario(sade->secretarios[0]);
     }
     else{
         fclose(pFile);
         leBancoDeDadosSecretarios(sade);
         leBancoDeDadosPacientes(sade);
         leBancoDeDadosMedicos(sade);
-        realizaLogin(sade);
     }
-    criaBancoDeDadosSecretarios(sade);
+    realizaLogin(sade);
     return sade;
 }
 
@@ -102,7 +99,7 @@ void cadastraSecretario(tSade* sade){
     scanf("%s%*c", senha);
     scanf("%s%*c", nivel);
     ACESSO acesso;
-    if(nivel=="USER"){
+    if((strcmp("ADMIN", nivel))){
         acesso=USER;
     }
     else acesso = ADMIN;
@@ -112,7 +109,7 @@ void cadastraSecretario(tSade* sade){
     sade->nSecretarios++;
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
     printf("#################### CADASTRO SECRETARIO #######################\n");
-    scanf("%*c");
+    scanf("%*c%*c");
 }
 
 void criaBancoDeDadosSecretarios(tSade* sade){
@@ -188,7 +185,7 @@ void cadastraPaciente(tSade* sade){
     sade->nPacientes++;
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
     printf("#################### CADASTRO PACIENTE #######################\n");
-    scanf("%*c");
+    scanf("%*c%*c");
 }
 
 void criaBancoDeDadosPacientes(tSade* sade){
@@ -239,7 +236,7 @@ void leBancoDeDadosMedicos(tSade* sade){
 }
 
 void cadastraMedico(tSade* sade){
-    printf("#################### CADASTRO SECRETARIO #######################\n");
+    printf("#################### CADASTRO MEDICO #######################\n");
     printf("NOME COMPLETO: <inserir dado via teclado>\n");
     printf("CPF: <inserir dado via teclado>\n");
     printf("DATA DE NASCIMENTO: <inserir dado via teclado>\n");
@@ -270,8 +267,8 @@ void cadastraMedico(tSade* sade){
     sade->medicos[sade->nMedicos]=criaMedico(info, user, senha, crm);
     sade->nMedicos++;
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
-    printf("#################### CADASTRO SECRETARIO #######################\n");
-    scanf("%*c");
+    printf("#################### CADASTRO MEDICO #######################\n");
+    scanf("%*c%*c");
 }
 
 void criaBancoDeDadosMedicos(tSade* sade){
@@ -344,4 +341,52 @@ void desalocaSade(tSade* sade){
     }
     free(sade->secretarios);
     free(sade);
+}
+
+void menuSade(tSade* sade){
+    char opcao;
+    while(1){
+        printf("####################### MENU PRINCIPAL #########################\n");
+                                        printf("ESCOLHA UMA OPCAO:\n");
+        if(sade->nivelAcesso == ADMIN)  printf("(1) CADASTRAR SECREATRIO\n");
+        if(sade->nivelAcesso != MEDICO) printf("(2) CADASTRAR MEDICO\n");
+        if(sade->nivelAcesso != MEDICO) printf("(3) CADASTRAR PACIENTE\n");
+        if(sade->nivelAcesso != USER)   printf("(4) REALIZAR CONSULTA\n");
+                                        printf("(5) BUSCAR PACIENTE\n");
+                                        printf("(6) RELATORIO GERAL\n");
+                                        printf("(7) FILA DE IMPRESSAO\n");
+                                        printf("(8) FINALIZAR O PROGRAMA\n");
+                                        printf("###############################################################\n");
+        scanf("%c%*c", &opcao);
+        if(opcao=='1' && sade->nivelAcesso==ADMIN){
+            cadastraSecretario(sade);
+        }
+        else if (opcao=='2' && sade->nivelAcesso!=MEDICO){
+            cadastraMedico(sade);
+        }
+        else if (opcao=='3' && sade->nivelAcesso!=MEDICO){
+            cadastraPaciente(sade);
+        }
+        else if (opcao=='4' && sade->nivelAcesso!=USER){
+
+        }
+        else if (opcao=='5'){
+
+        }
+        else if (opcao=='6'){
+
+        }
+        else if (opcao=='7'){
+
+        }
+        else if (opcao=='8'){
+            break;
+        }
+    }
+}
+
+void criaBancoDeDados(tSade* sade){
+    criaBancoDeDadosMedicos(sade);
+    criaBancoDeDadosPacientes(sade);
+    criaBancoDeDadosSecretarios(sade);
 }
