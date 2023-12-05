@@ -1,0 +1,4 @@
+tReceita.c: In function ‘imprimeNaTelaReceita’:
+tReceita.c:54:14: warning: comparison with string literal results in unspecified behavior [-Waddress]
+   54 |     if(r->crm=="0" || r->crm==NULL){
+      |              ^~

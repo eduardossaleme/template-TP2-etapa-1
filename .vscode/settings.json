@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "tsecretario.h": "c",
-        "tpaciente.h": "c"
+        "tpaciente.h": "c",
+        "stdlib.h": "c"
     }
 }

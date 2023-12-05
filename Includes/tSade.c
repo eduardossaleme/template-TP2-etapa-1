@@ -9,10 +9,12 @@ struct tSade{
     ACESSO nivelAcesso;
     int nMedicos, nPacientes, nSecretarios, nConsultas;
     char crm[MAX_TAM_CRM];
+    char caminhoDB[1000];
     char path[1000];
+    tFila* fila;
 };
 
-tSade* inicializaSade(){
+tSade* inicializaSade(char* path){
     tSade* sade = (tSade*)calloc(1 ,sizeof(tSade));
     FILE* pFile;
     char arquivo[1020];
@@ -20,9 +22,11 @@ tSade* inicializaSade(){
     sade->secretarios=NULL;
     sade->pacientes=NULL;
     sade->consultas=NULL;
+    sade->fila=criaFila();
+    strcpy(sade->path, path);
     printf("################################################\n DIGITE O CAMINHO DO BANCO DE DADOS:\n################################################\n");
-    scanf("%s%*c", sade->path);
-    sprintf(arquivo, "%s/secretarios.bin", sade->path);
+    scanf("%s%*c", sade->caminhoDB);
+    sprintf(arquivo, "%s/secretarios.bin", sade->caminhoDB);
     if(!(pFile = fopen(arquivo, "rb"))){
         cadastraSecretario(sade);
     }
@@ -49,7 +53,7 @@ void leBancoDeDadosSecretarios(tSade* sade){
     ACESSO acesso;
     tPessoa* info;
 
-    sprintf(arquivo, "%s/secretarios.bin", sade->path);
+    sprintf(arquivo, "%s/secretarios.bin", sade->caminhoDB);
 
     if((pFile = fopen(arquivo, "rb"))){
         fread(&sade->nSecretarios, sizeof(int), 1, pFile);
@@ -115,11 +119,11 @@ void cadastraSecretario(tSade* sade){
 void criaBancoDeDadosSecretarios(tSade* sade){
     char nome[1020];
     int i;
-    sprintf(nome, "%s/secretarios.bin", sade->path);
+    sprintf(nome, "%s/secretarios.bin", sade->caminhoDB);
     FILE *arquivo;
     arquivo = fopen(nome, "wb");
     if(arquivo==NULL){
-        printf("%s\n", sade->path);
+        printf("%s\n", sade->caminhoDB);
         printf("ERRO\n");
         return;
     }
@@ -140,7 +144,7 @@ void leBancoDeDadosPacientes(tSade* sade){
     char genero[MAX_TAM_GENERO];
     tPessoa* info;
 
-    sprintf(arquivo, "%s/pacientes.bin", sade->path);
+    sprintf(arquivo, "%s/pacientes.bin", sade->caminhoDB);
 
     if((pFile = fopen(arquivo, "rb"))){
         fread(&sade->nPacientes, sizeof(int), 1, pFile);
@@ -190,7 +194,7 @@ void cadastraPaciente(tSade* sade){
 
 void criaBancoDeDadosPacientes(tSade* sade){
     char nome[1020];
-    sprintf(nome, "%s/pacientes.bin", sade->path);
+    sprintf(nome, "%s/pacientes.bin", sade->caminhoDB);
     FILE* pFile = fopen(nome, "wb");
     fwrite(&sade->nPacientes, sizeof(int), 1, pFile);
     for(int i=0;i<sade->nPacientes;i++){
@@ -212,7 +216,7 @@ void leBancoDeDadosMedicos(tSade* sade){
     char crm[MAX_TAM_CRM];
     tPessoa* info;
 
-    sprintf(arquivo, "%s/medicos.bin", sade->path);
+    sprintf(arquivo, "%s/medicos.bin", sade->caminhoDB);
 
     if((pFile = fopen(arquivo, "rb"))){
         fread(&sade->nMedicos, sizeof(int), 1, pFile);
@@ -273,7 +277,7 @@ void cadastraMedico(tSade* sade){
 
 void criaBancoDeDadosMedicos(tSade* sade){
     char nome[1020];
-    sprintf(nome, "%s/medicos.bin", sade->path);
+    sprintf(nome, "%s/medicos.bin", sade->caminhoDB);
     FILE* pFile = fopen(nome, "wb");
     fwrite(&sade->nMedicos, sizeof(int), 1, pFile);
     for(int i=0;i<sade->nMedicos;i++){
@@ -339,6 +343,7 @@ void desalocaSade(tSade* sade){
     for(i=0;i<sade->nSecretarios;i++){
         desalocaSecretario(sade->secretarios[i]);
     }
+    desalocaFila(sade->fila);
     free(sade->secretarios);
     free(sade);
 }
@@ -389,4 +394,26 @@ void criaBancoDeDados(tSade* sade){
     criaBancoDeDadosMedicos(sade);
     criaBancoDeDadosPacientes(sade);
     criaBancoDeDadosSecretarios(sade);
+}
+
+void filaDeImpressao(tSade* sade){
+    char c;
+    while(1){
+        printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
+        printf("ESCOLHA UMA OPCAO:\n(1)EXECUTAR FILA DE IMPRESSAO\n(2)RETORNAR AO MENU ANTERIOR\n");
+        printf("############################################################\n");
+        scanf("%c%*c", &c);
+        if(c=='1'){
+            printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
+            printf("EXECUTANDO FILA DE IMPRESSÃO:\n");
+            imprimeFila(sade->fila, sade->path);
+            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU PRINCIPAL\n");
+            printf("###########################################################\n");
+            scanf("%*c%*c");
+            break;
+        }
+        else if(c=='2'){
+            break;
+        }
+    }
 }
