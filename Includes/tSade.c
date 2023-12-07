@@ -23,7 +23,7 @@ tSade* inicializaSade(char* path){
     sade->pacientes=NULL;
     sade->consultas=NULL;
     sade->fila=criaFila();
-    strcpy(sade->path, path);
+    sprintf(sade->path, "%s/saida", path);
     printf("################################################\n DIGITE O CAMINHO DO BANCO DE DADOS:\n################################################\n");
     scanf("%s%*c", sade->caminhoDB);
     sprintf(arquivo, "%s/secretarios.bin", sade->caminhoDB);
@@ -87,7 +87,7 @@ void cadastraSecretario(tSade* sade){
     char nivel[10];
     printf("#################### CADASTRO SECRETARIO #######################\n");
     printf("NOME COMPLETO: ");
-    scanf("%s%*c", nome);
+    scanf("%[^\n]%*c", nome);
     printf("CPF: ");
     scanf("%s%*c", cpf);
     printf("DATA DE NASCIMENTO: ");
@@ -97,9 +97,9 @@ void cadastraSecretario(tSade* sade){
     printf("GENERO: ");
     scanf("%s%*c", genero);
     printf("NOME DE USUARIO: ");
-    scanf("%s%*c", user);
+    scanf("%[^\n]%*c", user);
     printf("SENHA: ");
-    scanf("%s%*c", senha);
+    scanf("%[^\n]%*c", senha);
     printf("NIVEL DE ACESSO: ");
     scanf("%s%*c", nivel);
     
@@ -129,6 +129,7 @@ void criaBancoDeDadosSecretarios(tSade* sade){
         return;
     }
     fwrite(&sade->nSecretarios, sizeof(int), 1, arquivo);
+    
     for(i=0;i<sade->nSecretarios;i++){
         adicionaSecretarioBandoDeDados(sade->secretarios[i], arquivo);
     }
@@ -171,9 +172,10 @@ void cadastraPaciente(tSade* sade){
     char data[MAX_TAM_DATA];
     char telefone[MAX_TAM_TELEFONE];
     char genero[MAX_TAM_GENERO];
+    
     printf("#################### CADASTRO PACIENTE #######################\n");
     printf("NOME COMPLETO: ");
-    scanf("%s%*c", nome);
+    scanf("%[^\n]%*c", nome);
     printf("CPF: ");
     scanf("%s%*c", cpf);
     printf("DATA DE NASCIMENTO: ");
@@ -182,25 +184,38 @@ void cadastraPaciente(tSade* sade){
     scanf("%s%*c", telefone);
     printf("GENERO: ");
     scanf("%s%*c", genero);
-
-    sade->pacientes = (tPaciente**)realloc(sade->pacientes,(1+sade->nPacientes)*sizeof(tPaciente*));
-    tPessoa* info = criaPessoa(nome, cpf, data, telefone, genero);
-    sade->pacientes[sade->nPacientes]=criaPaciente(info);
-    sade->nPacientes++;
-    printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+    
+    if(cpfJaExistente(sade, cpf)){
+        printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
+    }
+    else{
+        sade->pacientes = (tPaciente**)realloc(sade->pacientes,(1+sade->nPacientes)*sizeof(tPaciente*));
+        tPessoa* info = criaPessoa(nome, cpf, data, telefone, genero);
+        sade->pacientes[sade->nPacientes]=criaPaciente(info);
+        sade->nPacientes++;
+        printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+    }
+    
     printf("#################### CADASTRO PACIENTE #######################\n");
     scanf("%*c%*c");
 }
 
 void criaBancoDeDadosPacientes(tSade* sade){
+    if(sade->nPacientes==0) return;
     char nome[1020];
     sprintf(nome, "%s/pacientes.bin", sade->caminhoDB);
-    FILE* pFile = fopen(nome, "wb");
-    fwrite(&sade->nPacientes, sizeof(int), 1, pFile);
-    for(int i=0;i<sade->nPacientes;i++){
-        adicionaPacienteBandoDeDados(sade->pacientes[i], pFile);
+    FILE* arquivo;
+    arquivo = fopen(nome, "wb");
+    if(arquivo==NULL){
+        printf("%s\n", sade->caminhoDB);
+        printf("ERRO\n");
+        return;
     }
-    fclose(pFile);
+    fwrite(&sade->nPacientes, sizeof(int), 1, arquivo);
+    for(int i=0;i<sade->nPacientes;i++){
+        adicionaPacienteBandoDeDados(sade->pacientes[i], arquivo);
+    }
+    fclose(arquivo);
 }
 
 void leBancoDeDadosMedicos(tSade* sade){
@@ -250,7 +265,7 @@ void cadastraMedico(tSade* sade){
     char crm[MAX_TAM_CRM];
     printf("#################### CADASTRO MEDICO #######################\n");
     printf("NOME COMPLETO: ");
-    scanf("%s%*c", nome);
+    scanf("%[^\n]%*c", nome);
     printf("CPF: ");
     scanf("%s%*c", cpf);
     printf("DATA DE NASCIMENTO: ");
@@ -276,6 +291,7 @@ void cadastraMedico(tSade* sade){
 }
 
 void criaBancoDeDadosMedicos(tSade* sade){
+    if(sade->nMedicos==0) return;
     char nome[1020];
     sprintf(nome, "%s/medicos.bin", sade->caminhoDB);
     FILE* pFile = fopen(nome, "wb");
@@ -425,7 +441,7 @@ void buscaPaciente(tSade* sade){
     char nome[MAX_TAM_NOME];
     printf("#################### BUSCAR PACIENTES #######################\n");
     printf("NOME DO PACIENTE: ");
-    scanf("%s%*c", nome);
+    scanf("%[^\n]%*c", nome);
     printf("############################################################\n");
     tListaBusca* lista = criaListaBusca();
     for(int i=0;i<sade->nPacientes;i++){
@@ -466,4 +482,14 @@ void buscaPaciente(tSade* sade){
         }  
     }
 
+}
+
+int cpfJaExistente(tSade* sade, char* cpf){
+    int aux=0;
+    for(int i=0;i<sade->nPacientes;i++){
+        if(!(strcmp(cpf, obtemCpfPessoa(obtemInfoPaciente(sade->pacientes[i]))))){
+            aux=1;
+        }
+    }
+    return aux;
 }

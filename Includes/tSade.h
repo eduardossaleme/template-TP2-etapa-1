@@ -42,4 +42,6 @@ void filaDeImpressao(tSade* sade);
 
 void buscaPaciente(tSade* sade);
 
+int cpfJaExistente(tSade* sade, char* cpf);
+
 #endif

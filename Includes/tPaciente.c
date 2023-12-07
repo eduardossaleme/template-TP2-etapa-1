@@ -7,7 +7,7 @@ struct tPaciente{
 };
 
 tPaciente* criaPaciente(tPessoa* infos){
-    tPaciente* paciente = (tPaciente*)malloc(sizeof(tPaciente));
+    tPaciente* paciente = (tPaciente*)calloc(1,sizeof(tPaciente));
     paciente->info = infos;
     paciente->nConsultas = 0;
     return paciente;
@@ -27,9 +27,5 @@ int obtemIdadePaciente(tPaciente* p){
 }
 
 void adicionaPacienteBandoDeDados(tPaciente* p, FILE* pFile){
-    fwrite(obtemNomePessoa(p->info), sizeof(char), MAX_TAM_NOME, pFile);
-    fwrite(obtemCpfPessoa(p->info), sizeof(char), MAX_TAM_CPF, pFile);
-    fwrite(obtemDataPessoa(p->info), sizeof(char), MAX_TAM_DATA, pFile);
-    fwrite(obtemTelefonePessoa(p->info), sizeof(char), MAX_TAM_TELEFONE, pFile);
-    fwrite(obtemGeneroPessoa(p->info), sizeof(char), MAX_TAM_GENERO, pFile);
+    escrecePessoaBinario(p->info, pFile);
 }
