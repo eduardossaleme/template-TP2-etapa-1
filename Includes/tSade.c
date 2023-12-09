@@ -5,9 +5,10 @@ struct tSade{
     tPaciente** pacientes;
     tSecretario** secretarios;
     tConsulta** consultas;
+    tLesao** lesoes;
     tPessoa* user;
     ACESSO nivelAcesso;
-    int nMedicos, nPacientes, nSecretarios, nConsultas;
+    int nMedicos, nPacientes, nSecretarios, nConsultas, nLesoes;
     char crm[MAX_TAM_CRM];
     char caminhoDB[1000];
     char path[1000];
@@ -22,6 +23,7 @@ tSade* inicializaSade(char* path){
     sade->secretarios=NULL;
     sade->pacientes=NULL;
     sade->consultas=NULL;
+    sade->lesoes=NULL;
     sade->fila=criaFila();
     sprintf(sade->path, "%s/saida", path);
     printf("################################################\n DIGITE O CAMINHO DO BANCO DE DADOS:\n################################################\n");
@@ -35,6 +37,7 @@ tSade* inicializaSade(char* path){
         leBancoDeDadosSecretarios(sade);
         leBancoDeDadosPacientes(sade);
         leBancoDeDadosMedicos(sade);
+        leBancoDeDadosConsulta(sade);
     }
     realizaLogin(sade);
     return sade;
@@ -144,6 +147,7 @@ void leBancoDeDadosPacientes(tSade* sade){
     char data[MAX_TAM_DATA];
     char telefone[MAX_TAM_TELEFONE];
     char genero[MAX_TAM_GENERO];
+    int nConsultas, id;
     tPessoa* info;
 
     sprintf(arquivo, "%s/pacientes.bin", sade->caminhoDB);
@@ -161,6 +165,11 @@ void leBancoDeDadosPacientes(tSade* sade){
             fread(genero, sizeof(char), MAX_TAM_GENERO, pFile);
             info = criaPessoa(nome, cpf, data, telefone, genero);
             sade->pacientes[i]=criaPaciente(info);
+            fread(&nConsultas, sizeof(int), 1, pFile);
+            for(int j=0; j<nConsultas;j++){
+                fread(&id, sizeof(int), 1, pFile);
+                adicionaConsultaPaciente(sade->pacientes[i], id);
+            }
         }
         fclose(pFile);
     }
@@ -302,6 +311,53 @@ void criaBancoDeDadosMedicos(tSade* sade){
     fclose(pFile);
 }
 
+void leBancoDeDadosConsulta(tSade* sade){
+    char arquivo[1020];
+    FILE* pFile;
+    char data[MAX_TAM_DATA];
+    char tipoPele[3];
+    char crmMedico[MAX_TAM_CRM];
+    int diabetes, fumante, alergia, cancer, id, nLesoes, idLesao,j;
+
+    sprintf(arquivo, "%s/consultas.bin", sade->caminhoDB);
+
+    if((pFile = fopen(arquivo, "rb"))){
+        fread(&sade->nConsultas, sizeof(int), 1, pFile);
+        
+        sade->consultas = (tConsulta**)realloc(sade->consultas,(sade->nConsultas)*sizeof(tConsulta*));
+
+        for(int i=0;i<sade->nConsultas;i++){
+            fread(data, sizeof(char), MAX_TAM_DATA, pFile);
+            fread(&diabetes, sizeof(int), 1, pFile);
+            fread(&fumante, sizeof(int), 1, pFile);
+            fread(&alergia, sizeof(int), 1, pFile);
+            fread(&cancer, sizeof(int), 1, pFile);
+            fread(tipoPele, sizeof(char), 3, pFile);
+            fread(crmMedico, sizeof(char), MAX_TAM_CRM, pFile);
+            fread(&id, sizeof(int), 1, pFile);
+            sade->consultas[i]=criaConsulta(data, diabetes, fumante, alergia, cancer, tipoPele, crmMedico, id);
+            fread(&nLesoes, sizeof(int), 1, pFile);
+            for(j=0;j<nLesoes;j++){
+                fread(&idLesao, sizeof(int), 1, pFile);
+                adcionaLesaoConsulta(sade->consultas[i], idLesao);
+            }
+        }
+        fclose(pFile);
+    }
+}
+
+void criaBancoDeDadosConsulta(tSade* sade){
+    if(sade->nConsultas==0) return;
+    char nome[1020];
+    sprintf(nome, "%s/consultas.bin", sade->caminhoDB);
+    FILE* pFile = fopen(nome, "wb");
+    fwrite(&sade->nConsultas, sizeof(int), 1, pFile);
+    for(int i=0;i<sade->nConsultas;i++){
+        adicionaConsultaBandoDeDados(sade->consultas[i], pFile);
+    }
+    fclose(pFile);
+}
+
 void realizaLogin(tSade* sade){
     char user[MAX_TAM_LOGIN];
     char senha[MAX_TAM_LOGIN];
@@ -320,6 +376,7 @@ void realizaLogin(tSade* sade){
                     aux1=0;
                     sade->nivelAcesso=obtemAcessoSecretario(sade->secretarios[i]);
                     sade->user=obtemInfoSecretario(sade->secretarios[i]);
+                    strcpy(sade->crm, "");
                     break;
                 }
                 else{
@@ -352,16 +409,24 @@ void desalocaSade(tSade* sade){
     for(i=0;i<sade->nMedicos;i++){
         desalocaMedico(sade->medicos[i]);
     }
-    free(sade->medicos);
+    if(sade->medicos!=NULL) free(sade->medicos);
     for(i=0;i<sade->nPacientes;i++){
         desalocaPaciente(sade->pacientes[i]);
     }
-    free(sade->pacientes);
+    if(sade->pacientes!=NULL) free(sade->pacientes);
     for(i=0;i<sade->nSecretarios;i++){
         desalocaSecretario(sade->secretarios[i]);
     }
+    if(sade->secretarios!=NULL) free(sade->secretarios);
+    for(i=0;i<sade->nConsultas;i++){
+        desalocaConsulta(sade->consultas[i]);
+    }
+    if(sade->consultas!=NULL) free(sade->consultas);
+    for(i=0;i<sade->nLesoes;i++){
+        desalocaLesao(sade->lesoes[i]);
+    }
+    if(sade->lesoes!=NULL) free(sade->lesoes);
     desalocaFila(sade->fila);
-    free(sade->secretarios);
     free(sade);
 }
 
@@ -411,6 +476,7 @@ void criaBancoDeDados(tSade* sade){
     criaBancoDeDadosMedicos(sade);
     criaBancoDeDadosPacientes(sade);
     criaBancoDeDadosSecretarios(sade);
+    criaBancoDeDadosConsulta(sade);
 }
 
 void filaDeImpressao(tSade* sade){
@@ -492,4 +558,114 @@ int cpfJaExistente(tSade* sade, char* cpf){
         }
     }
     return aux;
+}
+
+void iniciaConsulta(tSade* sade){
+    tPaciente* paciente;
+    char cpf[MAX_TAM_CPF];
+    printf("#################### CONSULTA MEDICA #######################\n");
+    printf("CPF DO PACIENTE: ");
+    scanf("%s%*c", cpf);
+    printf("############################################################\n");
+    int i, aux=0;
+    for(i=0;i<sade->nPacientes;i++){
+        if(!(strcmp(cpf, obtemCpfPessoa(obtemInfoPaciente(sade->pacientes[i]))))){
+            paciente=sade->pacientes[i];
+            aux=1;
+        }
+    }
+    if(aux==0){
+        printf("#################### CONSULTA MEDICA #######################\n");
+        printf("CPF DO PACIENTE: %s\n", cpf);
+        printf("PACIENTE SEM CADASTRO\n\n");
+        printf("PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+        printf("############################################################\n");
+        scanf("%*c%*c");
+        return;
+    }
+    else{
+        printf("#################### CONSULTA MEDICA #######################\n");
+        printf("CPF DO PACIENTE: %s\n", cpf);
+        printf("- - -\n");
+        printf("- NOME: %s\n", obtemNomePessoa(obtemInfoPaciente(paciente)));
+        printf("- DATA DE NASCIMENTO: %s\n", obtemDataPessoa(obtemInfoPaciente(paciente)));
+        printf("- - -\n\n");
+        realizaConsulta(sade, paciente);
+        adicionaConsultaPaciente(paciente, sade->nConsultas);
+    }
+}
+
+void realizaConsulta(tSade* sade, tPaciente* paciente){
+    char data[MAX_TAM_DATA];
+    char tipoPele[3];
+    int diabetes, fumante, alergia, cancer, n=0;
+    char opcao;
+    printf("DATA DA CONSULTA: ");
+    scanf("%s%*c", data);
+    printf("POSSUI DIABETES: ");
+    scanf("%d%*c", &diabetes);
+    printf("FUMANTE:");
+    scanf("%d%*c", &fumante);
+    printf("ALEGIA A MEDICAMENTO: ");
+    scanf("%d%*c", &alergia);
+    printf("HISTORICO DE CANCER: ");
+    scanf("%d%*c", &cancer);
+    printf("TIPO DE PELE: ");
+    scanf("%s%*c", tipoPele);
+    printf("############################################################\n");
+    sade->consultas=(tConsulta**)realloc(sade->consultas, (sade->nConsultas+1)*sizeof(tConsulta*));
+    sade->consultas[sade->nConsultas]=criaConsulta(data, diabetes, fumante, alergia, cancer, tipoPele, sade->crm, sade->nConsultas);
+    while(1){
+        printf("#################### CONSULTA MEDICA #######################\n");
+        printf("ESCOLHA UMA OPCAO:\n");
+        printf("(1) CADASTRAR LESAO\n");
+        printf("(2) GERAR RECEITA MEDICA\n");
+        printf("(3) SOLICITACAO DE BIOPSIA\n");
+        printf("(4) ENCAMINHAMENTO\n");
+        printf("(5) ENCERRAR CONSULTA\n");
+        printf("############################################################\n");
+        scanf("%c%*c", &opcao);
+        if(opcao=='1'){
+            n++;
+            cadastraLesao(sade, n);
+        }
+        else if (opcao=='2'){
+            
+        }
+        else if (opcao=='3'){
+            
+        }
+        else if (opcao=='4'){
+
+        }
+        else if (opcao=='5'){
+            break;
+        }
+    }
+    sade->nConsultas++;
+}
+
+void cadastraLesao(tSade* sade, int n){
+    char diagnostico[MAX_TAM_DIAGNOSTICO];
+    char parteCorpo[MAX_TAM_PCH];
+    int tamanho, cirurgia, crioterapia;
+    printf("#################### CONSULTA MEDICA #######################\n");
+    printf("CADASTRO DE LESAO:\n");
+    printf("DIAGNOSTICO CLINICO: ");
+    scanf("%[^\n]%*c", diagnostico);
+    printf("REGIAO DO CORPO: ");
+    scanf("%s%*c",parteCorpo);
+    printf("TAMANHO: ");
+    scanf("%d%*c", &tamanho);
+    printf("ENVIAR PARA CIRURGIA: ");
+    scanf("%d%*c", &cirurgia);
+    printf("ENVIAR PARA CRIOTERAPIA: ");
+    scanf("%d%*c", &crioterapia);
+    sade->lesoes=(tLesao**)realloc(sade->lesoes, (sade->nLesoes+1)*sizeof(tLesao*));
+    sade->lesoes[sade->nLesoes]=criaLesao(diagnostico, parteCorpo, tamanho, cirurgia, crioterapia, sade->nLesoes, n);
+    adcionaLesaoConsulta(sade->consultas[sade->nConsultas], sade->nLesoes);
+    sade->nLesoes++;
+    printf("LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    printf("############################################################\n");
+    scanf("%*c%*c");
 }

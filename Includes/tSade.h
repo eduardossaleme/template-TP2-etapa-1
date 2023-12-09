@@ -5,6 +5,7 @@
 #include "tSecretario.h"
 #include "tPaciente.h"
 #include "tConsulta.h"
+#include "tLesao.h"
 #include "tFila.h"
 #include "tListaBusca.h"
 
@@ -26,6 +27,10 @@ void criaBancoDeDadosPacientes(tSade* sade);
 
 void leBancoDeDadosMedicos(tSade* sade);
 
+void leBancoDeDadosConsulta(tSade* sade);
+
+void criaBancoDeDadosConsulta(tSade* sade);
+
 void cadastraMedico(tSade* sade);
 
 void criaBancoDeDadosMedicos(tSade* sade);
@@ -43,5 +48,11 @@ void filaDeImpressao(tSade* sade);
 void buscaPaciente(tSade* sade);
 
 int cpfJaExistente(tSade* sade, char* cpf);
+
+void iniciaConsulta(tSade* sade);
+
+void realizaConsulta(tSade* sade, tPaciente* paciente);
+
+void cadastraLesao(tSade* sade, int n);
 
 #endif
