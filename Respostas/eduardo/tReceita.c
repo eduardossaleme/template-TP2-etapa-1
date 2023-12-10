@@ -51,7 +51,7 @@ void imprimeNaTelaReceita(void *dado){
     printf("\n%s\n", r->nomeMedicamento);
     printf("%d %s\n", r->qtd, r->tipoMedicamento);
     printf("\n%s\n\n", r->intrucoes);
-    if(r->crm=="0" || r->crm==NULL){
+    if(r->crm==NULL){
         printf(" ()\n");
     }
     else{
@@ -84,7 +84,7 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
     fprintf(pFile, "\n%s\n\n", r->intrucoes);
 
     // Corrigir a condição para verificar se a string é nula ou vazia
-    if (r->crm == NULL || strcmp(r->crm, "0") == 0) {
+    if (r->crm == NULL) {
         fprintf(pFile, " ()\n");
     } else {
         fprintf(pFile, "%s (%s)\n", r->nomeMedico, r->crm);

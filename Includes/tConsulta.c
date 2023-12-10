@@ -47,3 +47,23 @@ void desalocaConsulta(tConsulta* c){
     free(c->idLesao);
     free(c);
 }
+
+char* obtemDataConsulta(tConsulta* c){
+    return c->data;
+}
+
+char* obtemCrmConsulta(tConsulta* c){
+    return c->crmMedico;
+}
+
+char* obtemTipoPeleConsulta(tConsulta* c){
+    return c->tipoPele;
+}
+
+int obtemIdLesaoConsulta(tConsulta* c, int i){
+    return c->idLesao[i];
+}
+
+int obtemNLesoesConsulta(tConsulta* c){
+    return c->nLesoes;
+}

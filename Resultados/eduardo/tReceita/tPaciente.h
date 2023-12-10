@@ -12,6 +12,8 @@ void desalocaPaciente(tPaciente* paciente);
 
 tPessoa* obtemInfoPaciente(tPaciente* p);
 
+void adicionaConsultaPaciente(tPaciente* p, int id);
+
 int obtemIdadePaciente(tPaciente* p);
 
 void adicionaPacienteBandoDeDados(tPaciente* p, FILE* pFile);

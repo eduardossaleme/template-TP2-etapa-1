@@ -8,6 +8,9 @@
 #include "tLesao.h"
 #include "tFila.h"
 #include "tListaBusca.h"
+#include "tReceita.h"
+#include "tBiopsia.h"
+#include "tEncaminhamento.h"
 
 typedef struct tSade tSade;
 
@@ -30,6 +33,10 @@ void leBancoDeDadosMedicos(tSade* sade);
 void leBancoDeDadosConsulta(tSade* sade);
 
 void criaBancoDeDadosConsulta(tSade* sade);
+
+void leBancoDeDadosLesoes(tSade* sade);
+
+void criaBancoDeDadosLesoes(tSade* sade);
 
 void cadastraMedico(tSade* sade);
 
@@ -54,5 +61,11 @@ void iniciaConsulta(tSade* sade);
 void realizaConsulta(tSade* sade, tPaciente* paciente);
 
 void cadastraLesao(tSade* sade, int n);
+
+void geraReceita(tSade* sade, tPaciente* p, char* data);
+
+void geraBiopsia(tSade* sade, tPaciente* p, char* data);
+
+void geraEncaminhamento(tSade* sade, tPaciente* p, char* data);
 
 #endif

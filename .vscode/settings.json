@@ -2,6 +2,8 @@
     "files.associations": {
         "tsecretario.h": "c",
         "tpaciente.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "tencaminhamento.h": "c",
+        "tconsulta.h": "c"
     }
 }

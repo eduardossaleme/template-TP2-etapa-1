@@ -2,19 +2,21 @@
 
 struct tPaciente{
     tPessoa* info;
-    int nLesoes, idade, diabetes, fumante, cancer, alergia;
-    char tipoPele[3];
+    int nConsultas, idade;
+    int *idConsulta;
 };
 
 tPaciente* criaPaciente(tPessoa* infos){
-    tPaciente* paciente = (tPaciente*)malloc(sizeof(tPaciente));
+    tPaciente* paciente = (tPaciente*)calloc(1,sizeof(tPaciente));
     paciente->info = infos;
-    paciente->nLesoes = 0;
+    paciente->nConsultas = 0;
+    paciente->idConsulta=NULL;
     return paciente;
 }
 
 void desalocaPaciente(tPaciente* paciente){
     desalocaPessoa(paciente->info);
+    if(paciente->idConsulta!=NULL) free(paciente->idConsulta);
     free(paciente);
 }
 
@@ -22,8 +24,10 @@ tPessoa* obtemInfoPaciente(tPaciente* p){
     return p->info;
 }
 
-char* obtemTipoPelePaciente(tPaciente* p){
-    return p->tipoPele;
+void adicionaConsultaPaciente(tPaciente* p, int id){
+        p->idConsulta=(int*)realloc(p->idConsulta,(p->nConsultas+1)*sizeof(int));
+        p->idConsulta[p->nConsultas]=id;
+        p->nConsultas++;
 }
 
 int obtemIdadePaciente(tPaciente* p){
@@ -31,9 +35,9 @@ int obtemIdadePaciente(tPaciente* p){
 }
 
 void adicionaPacienteBandoDeDados(tPaciente* p, FILE* pFile){
-    fwrite(obtemNomePessoa(p->info), sizeof(char), MAX_TAM_NOME, pFile);
-    fwrite(obtemCpfPessoa(p->info), sizeof(char), MAX_TAM_CPF, pFile);
-    fwrite(obtemDataPessoa(p->info), sizeof(char), MAX_TAM_DATA, pFile);
-    fwrite(obtemTelefonePessoa(p->info), sizeof(char), MAX_TAM_TELEFONE, pFile);
-    fwrite(obtemGeneroPessoa(p->info), sizeof(char), MAX_TAM_GENERO, pFile);
+    escrecePessoaBinario(p->info, pFile);
+    fwrite(&p->nConsultas, sizeof(int), 1, pFile);
+    for(int i=0;i<p->nConsultas;i++){
+        fwrite(&p->idConsulta[i], sizeof(int), 1, pFile);
+    }
 }

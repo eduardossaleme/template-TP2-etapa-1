@@ -1,23 +1,7 @@
-main.c: In function ‘main’:
-main.c:11:5: error: expected declaration or statement at end of input
-   11 |     desalocaSade(sade);
-      |     ^~~~~~~~~~~~
-tReceita.c: In function ‘imprimeNaTelaReceita’:
-tReceita.c:54:14: warning: comparison with string literal results in unspecified behavior [-Waddress]
-   54 |     if(r->crm=="0" || r->crm==NULL){
-      |              ^~
-tSade.c: In function ‘cadastraPaciente’:
-tSade.c:180:12: warning: unused variable ‘acesso’ [-Wunused-variable]
-  180 |     ACESSO acesso;
-      |            ^~~~~~
-tSade.c: In function ‘cadastraMedico’:
-tSade.c:264:12: warning: unused variable ‘acesso’ [-Wunused-variable]
-  264 |     ACESSO acesso;
-      |            ^~~~~~
 tSade.c: In function ‘menuSade’:
-tSade.c:354:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  354 |         if(sade->nivelAcesso != USER)   printf("(4) REALIZAR CONSULTA\n");
+tSade.c:492:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  492 |         if(sade->nivelAcesso != USER)   printf("(4) REALIZAR CONSULTA\n");
       |         ^~
-tSade.c:355:41: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  355 |                                         printf("(5) BUSCAR PACIENTE\n");
+tSade.c:493:41: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  493 |                                         printf("(5) BUSCAR PACIENTE\n");
       |                                         ^~~~~~

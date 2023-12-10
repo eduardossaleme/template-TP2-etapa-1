@@ -1,1 +1,299 @@
-valgrind: Resultados/eduardo/main/prog: No such file or directory
+################################################
+ DIGITE O CAMINHO DO BANCO DE DADOS:
+################################################
+Caminho do banco de dados: Resultados/eduardo/main/Casos/4/../../
+Caminho da pasta de saida: Resultados/eduardo/main/Casos/4/saida
+######################## ACESSO MINI-SADE ######################
+DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
+SENHA INCORRETA
+######################## ACESSO MINI-SADE ######################
+DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: ############################################################
+#################### BUSCAR PACIENTES #######################
+NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: ############################################################
+#################### BUSCAR PACIENTES #######################
+NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: ############################################################
+#################### BUSCAR PACIENTES #######################
+PACIENTES ENCONTRADOS:
+1 - TRYNDAMERE (200.171.256-10)
+2 - TRYNDAMERE (955.141.970-96)
+
+SELECIONE UMA OPCAO:
+(1) ENVIAR LISTA PARA IMPRESSAO
+(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+#################### BUSCAR PACIENTES #######################
+LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE: ############################################################
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE: 955.141.970-96
+- - -
+- NOME: TRYNDAMERE
+- DATA DE NASCIMENTO: 12/12/1980
+- - -
+
+DATA DA CONSULTA: POSSUI DIABETES: FUMANTE:ALEGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: ############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUÇÕES DE USO: @@@@@@@@20/10/2022@@@@@@@@@
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUÇÕES DE USO: @@@@@@@@20/10/2022@@@@@@@@@
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+ESPECIALIDADE ENCAMINHADA: MOTIVO: 
+ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+ESPECIALIDADE ENCAMINHADA: MOTIVO: 
+ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR LESAO
+(2) GERAR RECEITA MEDICA
+(3) SOLICITACAO DE BIOPSIA
+(4) ENCAMINHAMENTO
+(5) ENCERRAR CONSULTA
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+################### FILA DE IMPRESSAO MEDICA #####################
+ESCOLHA UMA OPCAO:
+(1)EXECUTAR FILA DE IMPRESSAO
+(2)RETORNAR AO MENU ANTERIOR
+############################################################
+################### FILA DE IMPRESSAO MEDICA #####################
+EXECUTANDO FILA DE IMPRESSÃO:
+1 - TRYNDAMERE (200.171.256-10)
+2 - TRYNDAMERE (955.141.970-96)
+
+PACIENTE: TRYNDAMERE
+CPF: 955.141.970-96
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - CARCINOMA ESPINOCELULAR - PERNA - 20MM
+
+DR. MUNDO (CRM-01234)
+20/10/2022
+
+PACIENTE: TRYNDAMERE
+CPF: 955.141.970-96
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - CARCINOMA ESPINOCELULAR - PERNA - 20MM
+
+DR. MUNDO (CRM-01234)
+20/10/2022
+
+RECEITUARIO
+NOME: TRYNDAMERE
+
+USO TOPICO
+
+NEBACETIM
+2 POMADA
+
+USAR TODOS OS DIAS ANTES DE DORMIR
+
+DR. MUNDO (CRM-01234)
+20/10/2022
+
+RECEITUARIO
+NOME: TRYNDAMERE
+
+USO ORAL
+
+PARACETAMOL 250MG
+12 COMPRIMIDO
+
+USAR APOS A CIRURGIA EM CASO DE DOR
+
+DR. MUNDO (CRM-01234)
+20/10/2022
+
+PACIENTE: TRYNDAMERE
+CPF: 955.141.970-96
+
+ESPECIALIDADE ENCAMINHADA: ORTOPEDIA
+MOTIVO: PACIENTE APRESENTA DESPROPORCIONALIDADE NOS BRACOS. NECESSARIO RAIO X.
+
+DR. MUNDO (CRM-01234)
+20/10/2022
+
+PACIENTE: TRYNDAMERE
+CPF: 955.141.970-96
+
+ESPECIALIDADE ENCAMINHADA: CARDIOLOGIA
+MOTIVO: AVALIACAO CARDIOLOGICA ANTES DA CIRURGIA
+
+DR. MUNDO (CRM-01234)
+20/10/2022
+
+PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU PRINCIPAL
+###########################################################
+################### FILA DE IMPRESSAO MEDICA #####################
+ESCOLHA UMA OPCAO:
+(1)EXECUTAR FILA DE IMPRESSAO
+(2)RETORNAR AO MENU ANTERIOR
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTE
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################

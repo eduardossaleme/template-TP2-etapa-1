@@ -35,4 +35,6 @@ char* obtemTelefonePessoa(tPessoa* p);
 
 char* obtemGeneroPessoa(tPessoa* p);
 
+void escrecePessoaBinario(tPessoa* p, FILE* f);
+
 #endif

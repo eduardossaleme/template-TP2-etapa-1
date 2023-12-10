@@ -5,8 +5,12 @@
 #include "tSecretario.h"
 #include "tPaciente.h"
 #include "tConsulta.h"
+#include "tLesao.h"
 #include "tFila.h"
 #include "tListaBusca.h"
+#include "tReceita.h"
+#include "tBiopsia.h"
+#include "tEncaminhamento.h"
 
 typedef struct tSade tSade;
 
@@ -26,6 +30,14 @@ void criaBancoDeDadosPacientes(tSade* sade);
 
 void leBancoDeDadosMedicos(tSade* sade);
 
+void leBancoDeDadosConsulta(tSade* sade);
+
+void criaBancoDeDadosConsulta(tSade* sade);
+
+void leBancoDeDadosLesoes(tSade* sade);
+
+void criaBancoDeDadosLesoes(tSade* sade);
+
 void cadastraMedico(tSade* sade);
 
 void criaBancoDeDadosMedicos(tSade* sade);
@@ -41,5 +53,19 @@ void criaBancoDeDados(tSade* sade);
 void filaDeImpressao(tSade* sade);
 
 void buscaPaciente(tSade* sade);
+
+int cpfJaExistente(tSade* sade, char* cpf);
+
+void iniciaConsulta(tSade* sade);
+
+void realizaConsulta(tSade* sade, tPaciente* paciente);
+
+void cadastraLesao(tSade* sade, int n);
+
+void geraReceita(tSade* sade, tPaciente* p);
+
+void geraBiopsia(tSade* sade, tPaciente* p);
+
+void geraEncaminhamento(tSade* sade, tPaciente* p);
 
 #endif

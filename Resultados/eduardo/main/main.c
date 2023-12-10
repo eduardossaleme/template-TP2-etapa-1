@@ -1,8 +1,8 @@
 #include "tSade.h"
 
-int main(){
+int main(int argc, char *argv[]){
 
-    tSade* sade = inicializaSade();
+    tSade* sade = inicializaSade(argv[1]);
 
     menuSade(sade);
 
@@ -10,3 +10,5 @@ int main(){
 
     desalocaSade(sade);
     
+    return 0;
+}

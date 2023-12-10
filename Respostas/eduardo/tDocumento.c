@@ -11,7 +11,7 @@ struct tDocumento{
 tDocumento *criaDocumento(void *dado, func_ptr_imprimeNaTela imprimeNaTela,
                           func_ptr_imprimeEmArquivo ImprimeEmArquivo,func_ptr_desaloca desaloca){
     
-    tDocumento* doc=(tDocumento*)malloc(sizeof(tDocumento));
+    tDocumento* doc=(tDocumento*)calloc(1,sizeof(tDocumento));
     doc->dado=dado;
     doc->fpDesaloca=desaloca;
     doc->fpImprimeArquivo=ImprimeEmArquivo;

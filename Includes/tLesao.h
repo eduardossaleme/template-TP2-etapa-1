@@ -13,4 +13,22 @@ tLesao* criaLesao(char* diagnostico, char* parteCorpo, int tamanho, int cirurgia
 
 void desalocaLesao(tLesao* l);
 
+void adcionaLesaoBancoDeDados(tLesao* l, FILE* pFile);
+
+tLesao* leLesaoBancoDeDados(FILE* pFile);
+
+int necessitaCirurgiaLesao(tLesao* l);
+
+int necessitaCrioterapiaLesao(tLesao* l);
+
+char* obtemRotuloLesao(tLesao* l);
+
+char* obtemParteCorpoLesao(tLesao* l);
+
+char* obtemDiagnosticoLesao(tLesao* l);
+
+int obtemIdLesao(tLesao* l);
+
+int obtemTamanhoLesao(tLesao* l);
+
 #endif

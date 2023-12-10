@@ -9,7 +9,7 @@ struct tPessoa{
 };
 
 tPessoa* criaPessoa(char* nome, char* cpf, char* data, char* telefone, char* genero){
-    tPessoa* pessoa = (tPessoa*)malloc(sizeof(tPessoa));
+    tPessoa* pessoa = (tPessoa*)calloc(1,sizeof(tPessoa));
     
     strcpy(pessoa->nome, nome);
     strcpy(pessoa->cpf, cpf);
@@ -47,4 +47,12 @@ char* obtemTelefonePessoa(tPessoa* p){
 
 char* obtemGeneroPessoa(tPessoa* p){
     return p->genero;
+}
+
+void escrecePessoaBinario(tPessoa* p, FILE* f){
+    fwrite(p->nome, sizeof(char), MAX_TAM_NOME, f);
+    fwrite(p->cpf, sizeof(char), MAX_TAM_CPF, f);
+    fwrite(p->data, sizeof(char), MAX_TAM_DATA, f);
+    fwrite(p->telefone, sizeof(char), MAX_TAM_TELEFONE, f);
+    fwrite(p->genero, sizeof(char), MAX_TAM_GENERO, f);
 }

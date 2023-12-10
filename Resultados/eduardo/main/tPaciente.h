@@ -12,7 +12,7 @@ void desalocaPaciente(tPaciente* paciente);
 
 tPessoa* obtemInfoPaciente(tPaciente* p);
 
-char* obtemTipoPelePaciente(tPaciente* p);
+void adicionaConsultaPaciente(tPaciente* p, int id);
 
 int obtemIdadePaciente(tPaciente* p);
 

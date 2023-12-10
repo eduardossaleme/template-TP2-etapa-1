@@ -13,4 +13,13 @@ void adicionaConsultaBandoDeDados(tConsulta* c, FILE* pFile);
 
 void desalocaConsulta(tConsulta* c);
 
+char* obtemDataConsulta(tConsulta* c);
+
+char* obtemCrmConsulta(tConsulta* c);
+
+char* obtemTipoPeleConsulta(tConsulta* c);
+
+int obtemIdLesaoConsulta(tConsulta* c, int i);
+
+int obtemNLesoesConsulta(tConsulta* c);
 #endif

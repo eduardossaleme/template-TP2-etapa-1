@@ -8,7 +8,7 @@ struct tMedico{
 };
 
 tMedico* criaMedico(tPessoa* infos, char* usuario, char* senha, char* crm){
-    tMedico* medico = (tMedico*)malloc(sizeof(tMedico));
+    tMedico* medico = (tMedico*)calloc(1, sizeof(tMedico));
     
     medico->info=infos;
     strcpy(medico->usuario, usuario);
@@ -40,11 +40,7 @@ char* obtemSenhaMedico(tMedico* m){
 }
 
 void adicionaMedicoBandoDeDados(tMedico* m, FILE* pFile){
-    fwrite(obtemNomePessoa(m->info), sizeof(char), MAX_TAM_NOME, pFile);
-    fwrite(obtemCpfPessoa(m->info), sizeof(char), MAX_TAM_CPF, pFile);
-    fwrite(obtemDataPessoa(m->info), sizeof(char), MAX_TAM_DATA, pFile);
-    fwrite(obtemTelefonePessoa(m->info), sizeof(char), MAX_TAM_TELEFONE, pFile);
-    fwrite(obtemGeneroPessoa(m->info), sizeof(char), MAX_TAM_GENERO, pFile);
+    escrecePessoaBinario(m->info, pFile);
     fwrite(m->crm, sizeof(char), MAX_TAM_CRM, pFile);
     fwrite(m->usuario, sizeof(char), MAX_TAM_LOGIN, pFile);
     fwrite(m->senha, sizeof(char), MAX_TAM_LOGIN, pFile);
