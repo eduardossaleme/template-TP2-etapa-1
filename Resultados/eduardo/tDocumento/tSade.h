@@ -62,10 +62,10 @@ void realizaConsulta(tSade* sade, tPaciente* paciente);
 
 void cadastraLesao(tSade* sade, int n);
 
-void geraReceita(tSade* sade, tPaciente* p);
+void geraReceita(tSade* sade, tPaciente* p, char* data);
 
-void geraBiopsia(tSade* sade, tPaciente* p);
+void geraBiopsia(tSade* sade, tPaciente* p, char* data);
 
-void geraEncaminhamento(tSade* sade, tPaciente* p);
+void geraEncaminhamento(tSade* sade, tPaciente* p, char* data);
 
 #endif

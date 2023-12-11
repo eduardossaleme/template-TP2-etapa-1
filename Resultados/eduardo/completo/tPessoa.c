@@ -49,6 +49,19 @@ char* obtemGeneroPessoa(tPessoa* p){
     return p->genero;
 }
 
+int calculaIdadePessoa(tPessoa* p, char* data){
+    int anoP, mesP, diaP, ano, mes, dia;
+    sscanf(data,"%d/%d/%d", &dia, &mes, &ano);
+    sscanf(p->data,"%d/%d/%d", &diaP, &mesP, &anoP);
+    if(mesP<mes){
+        return ano-anoP;
+    }
+    else if(mesP==mes && diaP<dia){
+        return ano-anoP;
+    }
+    else return (ano-anoP-1);
+}
+
 void escrecePessoaBinario(tPessoa* p, FILE* f){
     fwrite(p->nome, sizeof(char), MAX_TAM_NOME, f);
     fwrite(p->cpf, sizeof(char), MAX_TAM_CPF, f);

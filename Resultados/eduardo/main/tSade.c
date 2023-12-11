@@ -13,6 +13,7 @@ struct tSade{
     char nomeMedico[MAX_TAM_NOME];
     char caminhoDB[1000];
     char path[980];
+    char data[MAX_TAM_DATA];
     tFila* fila;
 };
 
@@ -27,6 +28,7 @@ tSade* inicializaSade(char* path){
     sade->consultas=NULL;
     sade->lesoes=NULL;
     sade->fila=criaFila();
+    strcpy(sade->data, "31/12/2023");
     printf("################################################\n DIGITE O CAMINHO DO BANCO DE DADOS:\n################################################\n");
     scanf("%s%*c",caminhoDB);
     sprintf(sade->caminhoDB, "%s/%s", path, caminhoDB);
@@ -512,9 +514,7 @@ void menuSade(tSade* sade){
             buscaPaciente(sade);
         }
         else if (opcao=='6'){
-            char ent;
-                scanf("%c%*c", &ent);
-                scanf("%c%*c", &ent);
+            geraRelatorioGeral(sade);
         }
         else if (opcao=='7'){
             filaDeImpressao(sade);
@@ -765,7 +765,6 @@ void geraReceita(tSade* sade, tPaciente* p, char* data){
     scanf("%d%*c", &qtd);
     printf("INSTRUÇÕES DE USO: ");
     scanf("%[^\n]%*c", instrucoes);
-    printf("@@@@@@@@%s@@@@@@@@@\n", data);
     if(sade->nivelAcesso==MEDICO){
         if(!strcmp(tipoUso, "ORAL")){
             r = criaReceita(obtemNomePessoa(obtemInfoPaciente(p)), ORAL, nomeMedicamento, tipoMedicamento, instrucoes, qtd, obtemNomePessoa(sade->user), sade->crm,data);
@@ -815,4 +814,102 @@ void geraEncaminhamento(tSade* sade, tPaciente* p, char* data){
     printf("\nENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     printf("############################################################\n");
     scanf("%*c%*c");
+}
+
+void geraRelatorioGeral(tSade* sade){
+    int nPacientesAtendidos, masc, fem, outros, idadeMedia, tamLesoes, crioterapia, cirurgia;
+    char c;
+    masc=obtemNumeroMasculino(sade);
+    fem=obtemNumeroFeminino(sade);
+    outros=sade->nPacientes-(fem+masc);
+    idadeMedia=obtemIdadeMedia(sade);
+    tamLesoes=obtemTamMedioLesoes(sade);
+    crioterapia=obtemQtdCrioterapias(sade);
+    cirurgia=obtemQtdCirurgias(sade);
+    nPacientesAtendidos=obtemNPacientesAtendidos(sade);
+    tRelatorioGeral* r=criaRelatorioGeral(nPacientesAtendidos, masc, fem, outros, idadeMedia, tamLesoes, crioterapia, cirurgia, sade->nLesoes);
+    printf("#################### RELATORIO GERAL #######################\n");
+    imprimeNaTelaRelatorioGeral(r);
+    while(1){
+        printf("SELECIONE UMA OPCAO:\n");
+        printf("(1) ENVIAR LISTA PARA IMPRESSAO\n");
+        printf("(2) RETORNAR AO MENU PRINCIPAL\n");
+        printf("############################################################\n");
+        scanf("%c%*c", &c);
+        if (c=='1')
+        {
+            insereDocumentoFila(sade->fila,r,imprimeNaTelaRelatorioGeral, imprimeArquivoRelatorioGeral, desalocaRelatorioGeral);
+            printf("#################### RELATORIO GERAL #######################\n");
+            printf("RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+            printf("############################################################\n");
+            scanf("%*c%*c");
+            break;
+        }
+        else if(c=='2'){
+            desalocaRelatorioGeral(r);
+            break;
+        }    
+    }
+}
+
+int obtemNumeroMasculino(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nPacientes;i++){
+        if(!(strcmp("MASCULINO", obtemGeneroPessoa(obtemInfoPaciente(sade->pacientes[i]))))){
+            aux++;
+        }
+    }
+    return aux;
+}
+
+int obtemNumeroFeminino(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nPacientes;i++){
+        if(!(strcmp("FEMININO", obtemGeneroPessoa(obtemInfoPaciente(sade->pacientes[i]))))){
+            aux++;
+        }
+    }
+    return aux; 
+}
+
+int obtemIdadeMedia(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nPacientes;i++){
+        aux+=calculaIdadePessoa(obtemInfoPaciente(sade->pacientes[i]), sade->data);
+    }
+    return (aux/sade->nPacientes);
+}
+
+int obtemTamMedioLesoes(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nLesoes;i++){
+        aux+=obtemTamanhoLesao(sade->lesoes[i]);
+    }
+    return (aux/sade->nLesoes);
+}
+
+int obtemQtdCirurgias(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nLesoes;i++){
+        aux+=necessitaCirurgiaLesao(sade->lesoes[i]);
+    }
+    return aux;
+}
+
+int obtemQtdCrioterapias(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nLesoes;i++){
+        aux+=necessitaCrioterapiaLesao(sade->lesoes[i]);
+    }
+    return aux;
+}
+
+int obtemNPacientesAtendidos(tSade* sade){
+    int aux=0;
+    for(int i=0;i<sade->nPacientes;i++){
+        if(obtemNConsultasPaciente(sade->pacientes[i])>0){
+            aux++;
+        }
+    }
+    return aux;
 }

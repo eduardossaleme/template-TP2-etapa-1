@@ -2,7 +2,7 @@
 
 struct tPaciente{
     tPessoa* info;
-    int nConsultas, idade;
+    int nConsultas,idade;
     int *idConsulta;
 };
 
@@ -32,6 +32,10 @@ void adicionaConsultaPaciente(tPaciente* p, int id){
 
 int obtemIdadePaciente(tPaciente* p){
     return p->idade;
+}
+
+int obtemNConsultasPaciente(tPaciente* p){
+    return p->nConsultas;
 }
 
 void adicionaPacienteBandoDeDados(tPaciente* p, FILE* pFile){

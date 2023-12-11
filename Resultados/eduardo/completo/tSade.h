@@ -11,6 +11,7 @@
 #include "tReceita.h"
 #include "tBiopsia.h"
 #include "tEncaminhamento.h"
+#include "tRelatorioGeral.h"
 
 typedef struct tSade tSade;
 
@@ -67,5 +68,21 @@ void geraReceita(tSade* sade, tPaciente* p, char* data);
 void geraBiopsia(tSade* sade, tPaciente* p, char* data);
 
 void geraEncaminhamento(tSade* sade, tPaciente* p, char* data);
+
+void geraRelatorioGeral(tSade* sade);
+
+int obtemNumeroMasculino(tSade* sade);
+
+int obtemNumeroFeminino(tSade* sade);
+
+int obtemIdadeMedia(tSade* sade);
+
+int obtemTamMedioLesoes(tSade* sade);
+
+int obtemQtdCirurgias(tSade* sade);
+
+int obtemQtdCrioterapias(tSade* sade);
+
+int obtemNPacientesAtendidos(tSade* sade);
 
 #endif

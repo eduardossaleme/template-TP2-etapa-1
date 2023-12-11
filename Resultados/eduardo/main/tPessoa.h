@@ -35,6 +35,8 @@ char* obtemTelefonePessoa(tPessoa* p);
 
 char* obtemGeneroPessoa(tPessoa* p);
 
+int calculaIdadePessoa(tPessoa* p, char* data);
+
 void escrecePessoaBinario(tPessoa* p, FILE* f);
 
 #endif

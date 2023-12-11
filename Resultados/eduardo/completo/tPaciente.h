@@ -16,6 +16,8 @@ void adicionaConsultaPaciente(tPaciente* p, int id);
 
 int obtemIdadePaciente(tPaciente* p);
 
+int obtemNConsultasPaciente(tPaciente* p);
+
 void adicionaPacienteBandoDeDados(tPaciente* p, FILE* pFile);
 
 #endif

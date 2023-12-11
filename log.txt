@@ -252,111 +252,111 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 1:
  - Arquivo de output gerado: Resultados/eduardo/completo/Casos/1/result_valgrind.txt.
- - Valgrind: Ok! allocs: 55, frees: 55, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 60, frees: 60, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/completo/Casos/1/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 2:
  - Arquivo de output gerado: Resultados/eduardo/completo/Casos/2/result_valgrind.txt.
- - Valgrind: Ok! allocs: 92, frees: 92, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 97, frees: 97, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/completo/Casos/2/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 3:
  - Arquivo de output gerado: Resultados/eduardo/completo/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 103, frees: 103, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 108, frees: 108, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/completo/Casos/3/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 4:
  - Arquivo de output gerado: Resultados/eduardo/completo/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 116, frees: 116, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 121, frees: 121, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/completo/Casos/4/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 5:
  - Arquivo de output gerado: Resultados/eduardo/completo/Casos/5/result_valgrind.txt.
- - Valgrind: Ok! allocs: 103, frees: 103, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 108, frees: 108, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/completo/Casos/5/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 6:
  - Arquivo de output gerado: Resultados/eduardo/completo/Casos/6/result_valgrind.txt.
- - Valgrind: Ok! allocs: 118, frees: 118, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 123, frees: 123, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/completo/Casos/6/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 1:
  - Arquivo de output gerado: Resultados/eduardo/main/Casos/1/result_valgrind.txt.
- - Valgrind: Ok! allocs: 56, frees: 56, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 61, frees: 61, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/main/Casos/1/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 2:
  - Arquivo de output gerado: Resultados/eduardo/main/Casos/2/result_valgrind.txt.
- - Valgrind: Ok! allocs: 93, frees: 93, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 98, frees: 98, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/main/Casos/2/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 3:
  - Arquivo de output gerado: Resultados/eduardo/main/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 105, frees: 105, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 110, frees: 110, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/main/Casos/3/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 4:
  - Arquivo de output gerado: Resultados/eduardo/main/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 118, frees: 118, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 123, frees: 123, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/main/Casos/4/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 5:
  - Arquivo de output gerado: Resultados/eduardo/main/Casos/5/result_valgrind.txt.
- - Valgrind: Ok! allocs: 104, frees: 104, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 109, frees: 109, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/main/Casos/5/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 6:
  - Arquivo de output gerado: Resultados/eduardo/main/Casos/6/result_valgrind.txt.
- - Valgrind: Ok! allocs: 119, frees: 119, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 124, frees: 124, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
- - O aluno não gerou o arquivo de saída Resultados/eduardo/main/Casos/6/saida/relatorio_geral.txt, considerando resultado incorreto!
+ - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
 
 #######################################
@@ -377,9 +377,9 @@ Nome 0: eduardo
  - Pasta tFila (peso 1.0): 30 resultados corretos de 36 / Nota 1.00
  - Pasta tDocumento (peso 1.0): 30 resultados corretos de 36 / Nota 1.00
  - Pasta tReceita (peso 0.5): 30 resultados corretos de 36 / Nota .50
- - Pasta completo (peso 0.0): 24 resultados corretos de 36 / Nota 0
- - Pasta main (peso 7.5): 24 resultados corretos de 36 / Nota 4.50
- - Nota Final eduardo: 7.00
+ - Pasta completo (peso 0.0): 30 resultados corretos de 36 / Nota 0
+ - Pasta main (peso 7.5): 30 resultados corretos de 36 / Nota 7.50
+ - Nota Final eduardo: 10.00
 
 ----------------------------------------------------------------------------
 
